@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --white: #fff;
+    --background: #f3f3f3;
+    --light-gray: #ddd;
+    --shinning-green: #95e616;
+    --light-green: #0bb886;
+    --purple: #7d38ba;
+    --dark-blue: #12274d;
+    --gray-blue: #787896;
+  }
+  
+  html {
+    font-size: 62.5%;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  body {
+    width: min(90vw, 980px);
+    margin: auto;
+    background: var(--background);
+  }
+  
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    text-transform: capitalize;
+  
+    font-size: 1.5rem;
+  
+    padding: 1rem;
+  
+    color: var(--white);
+  }
