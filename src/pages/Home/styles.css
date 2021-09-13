@@ -11,6 +11,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    height: 35vh;
 }
 
 .title {
@@ -33,8 +35,9 @@
     font-size: 2em;
 }
 
-.image-medals {
+.card-medals {
     width: 50%;
+    height: 100%;
 }
 
 .top-10 {
@@ -64,4 +67,18 @@
 
 .top-10 table {
     width: 100%;
+}
+
+.top-10 table thead tr th {
+    font-size: 1.8rem;
+    font-weight: 300;
+
+    text-align: center;
+    text-transform: capitalize;
+    
+    color: var(--dark-blue);
+
+    padding: 1rem 0;
+    
+    width: 10%;
 }

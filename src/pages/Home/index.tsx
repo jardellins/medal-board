@@ -18,7 +18,7 @@ const Home = () => {
               <h1>Here we'll show you the medal board</h1>
               <p>Find out who's in the top</p>
             </div>
-            <div className="image-medals">
+            <div className="card-medals">
               <ImgPodium />
             </div>
           </div>
