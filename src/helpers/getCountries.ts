@@ -5,7 +5,7 @@ const getCountries = (list: string[]) => {
     return index === list.indexOf(elem);
   });
 
-  return data;
+  return data.sort();
 };
 
 export default getCountries;

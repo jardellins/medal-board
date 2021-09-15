@@ -6,27 +6,18 @@ import Header from "../../components/Header";
 import "./styles.css";
 import api from "../../services/api";
 import getCountries from "../../helpers/getCountries";
-
-type MedalistProps = {
-  athlete: string;
-  country: string;
-  sex: string;
-  event: string;
-  medal: string;
-};
-
-type CountryProps = {
-  countryName: string;
-  goldMedal: number;
-  silverMedal: number;
-  bronzeMedal: number;
-  medalist: MedalistProps[];
-};
+import { CountryProps } from "../../dtos/country/countryDTO";
+import { MedalistProps } from "../../dtos/medalist/medalistDTO";
+import { countryBoard } from "../../helpers/countryBoard";
 
 const Home = () => {
   const [listAllCountries, setListAllCountries] = useState<string[]>([]);
   const [countries, setCountries] = useState<CountryProps[]>([]);
   const [countriesNames, setCountriesNames] = useState<string[]>([]);
+  const [selectedCountry, setSelectedCountry] = useState<CountryProps>(
+    {} as CountryProps
+  );
+  const [valueCountry, setValueCountry] = useState<string>("");
 
   useEffect(() => {
     getMedalist();
@@ -38,46 +29,17 @@ const Home = () => {
     setCountriesNames(countriesNamesFiltered);
   }, [listAllCountries]);
 
-  setTimeout(() => {
-    console.log("passou")
-    // const newData = getMedalists(countriesNames[0])
-    // setCountries(prev => [...prev, newData])
-    
-    // countriesNames.map(country => {
-    // })
-  }, 1000)
+  useEffect(() => {
+    if (!!valueCountry) {
+      const getData = async () => {
+        const data = await countryBoard(valueCountry);
 
-  async function handleCountries() {
-      const data = await api.get(`/medalists?country=KEN`).then((res) => res.data);
-      let gold = 0
-      let silver = 0
-      let bronze = 0
+        setSelectedCountry(data);
+      };
 
-      console.log(data)
-      data.map((data: MedalistProps) => {
-        switch(data.medal) {
-          case "Gold": gold+=1
-              return
-          case "Silver": silver+=1
-              return
-          case "Bronze": bronze+=1
-        }
-      })
-
-      const newData: CountryProps = {
-        countryName: "KEN",
-        goldMedal: gold,
-        silverMedal: silver,
-        bronzeMedal: bronze,
-        medalist: data,
-      }
-
-      setCountries(prev => [...prev, newData])
-
-      return newData
-  }
-
-  console.log(countries)
+      getData();
+    }
+  }, [valueCountry]);
 
   async function getMedalist() {
     const medalist = await api.get("/medalists").then((res) => res.data);
@@ -103,12 +65,27 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="top-10">
+          <div className="list-countries">
+            <div className="input">
+              <label htmlFor="country">Choose your country</label>
+              <input
+                id="country"
+                type="text"
+                list="countries"
+                onChange={(e) => setValueCountry(e.target.value)}
+              />
+              <datalist id="countries">
+                {countriesNames &&
+                  countriesNames.map((country, index) => (
+                    <option key={index} value={country} />
+                  ))}
+              </datalist>
+            </div>
             <div>
               <table>
                 <thead>
                   <tr>
-                    <th onClick={handleCountries}>Country</th>
+                    <th>Country</th>
                     <th>Gold</th>
                     <th>Silver</th>
                     <th>Bronze</th>
@@ -116,16 +93,15 @@ const Home = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {countriesNames &&
-                    countriesNames.map((country, index) => (
-                      <tr key={index}>
-                        <td>{country}</td>
-                        <td>12</td>
-                        <td>11</td>
-                        <td>10</td>
-                        <td>33</td>
-                      </tr>
-                    ))}
+                  {selectedCountry && (
+                    <tr>
+                      <td>{selectedCountry.countryName}</td>
+                      <td>{selectedCountry.goldMedal}</td>
+                      <td>{selectedCountry.silverMedal}</td>
+                      <td>{selectedCountry.bronzeMedal}</td>
+                      <td>{selectedCountry.total}</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

@@ -40,10 +40,11 @@
     height: 100%;
 }
 
-.top-10 {
+.list-countries {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     
     width: 100%;
     
@@ -55,7 +56,41 @@
     background: var(--white);
 }
 
-.top-10 > div {
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.input > label {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+
+    text-transform: capitalize;
+    
+    color: var(--gray-blue);
+}
+
+.input > input {
+    background: var(--background);
+    
+    padding: 1rem;
+    
+    border: none;
+    border-radius: 1rem;
+    
+    font-size: 1.6rem;
+    font-weight: bold;
+
+    text-align: center;
+    outline: none;
+    color: var(--purple);
+}
+
+.list-countries > div:last-child {
     width: 90%;
     height: 90%;
 
@@ -65,20 +100,46 @@
     border-radius: 0.8rem;
 }
 
-.top-10 table {
+.list-countries table {
     width: 100%;
+    border-collapse: collapse;
 }
 
-.top-10 table thead tr th {
-    font-size: 1.8rem;
-    font-weight: 300;
+.list-countries table thead tr {
+    font-size: 2rem;
 
     text-align: center;
     text-transform: capitalize;
     
-    color: var(--dark-blue);
+    
+    background: var(--dark-gray);
+}
 
+.list-countries table thead tr th {
+    color: var(--white);
+    
     padding: 1rem 0;
     
     width: 10%;
+}
+
+.list-countries table thead tr th:first-child {
+    border-radius: 0.8rem 0 0 0;
+}
+
+.list-countries table thead tr th:last-child {
+    border-radius: 0 0.8rem 0 0;
+}
+
+.list-countries table tbody tr {
+    font-size: 1.7rem;
+    font-weight: 500;
+
+    text-align: center;
+
+    color: var(--purple);
+}
+
+.list-countries table tbody tr td{
+    padding: 1rem 0;
 }
