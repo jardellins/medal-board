@@ -1,51 +1,92 @@
-// import React, { useState, useEffect, createContext, useContext } from "react";
-// import api from "../services/api";
+import React, { useState, useEffect, createContext, useContext } from "react";
 
-// type MedalistProps = {
-//   athlete: string;
-//   country: string;
-//   sex: string;
-//   event: string;
-//   medal: string;
-// };
+import { CountryProps } from "../dtos/country/countryDTO";
+import { ChildrenProps } from "../dtos/medalist/childrenDTO";
+import { MedalistProps } from "../dtos/medalist/medalistDTO";
+import { countryBoard } from "../helpers/countryBoard";
+import getCountries from "../helpers/getCountries";
+import api from "../services/api";
 
-// type CountryProps = {
-//   countryName: string;
-//   goldMedal: number;
-//   silverMedal: number;
-//   bronzeMedal: number;
-//   medalist: MedalistProps
-// };
+import MedalistDataContext from "./context";
 
-// const MedalistContext = createContext<CountryProps>({} as CountryProps);
+export const MedalistProvider = ({ children }: ChildrenProps) => {
+  const [listAllCountries, setListAllCountries] = useState<string[]>([]);
+  const [countries, setCountries] = useState<CountryProps[]>([]);
+  const [countriesNames, setCountriesNames] = useState<string[]>([]);
+  const [selectedCountry, setSelectedCountry] = useState<CountryProps>(
+    {} as CountryProps
+  );
+  const [valueCountry, setValueCountry] = useState<string>("");
 
-// const MedalistProvider = ({ children }) => {
-//   const [countryName, setCountryName] = useState<string>();
+  useEffect(() => {
+    getMedalist();
+  }, []);
 
-//   useEffect(() => {
-//     const medalist: any = api.get("/medalists").then((res) => res.data);
+  useEffect(() => {
+    const countriesNamesFiltered = getCountries(listAllCountries);
 
-//     medalist.map((value: CountryProps) => {
-//       const newCountries = countryName?.filter((addValue) => addValue !== value.countryName);
+    setCountriesNames(countriesNamesFiltered);
+  }, [listAllCountries]);
 
-//       setCountryName(newCountries);
-//     });
-//   }, []);
+  // useEffect(() => {
+  //   if(!countriesNames) {
+  //     return
+  //   }
 
-//   console.log(countryName)
+  //   countriesNames.map((country) => {
+  //     const getData = async () => {
+  //       const data = await countryBoard(country);
 
-//   return (
-//     <MedalistContext.Provider value={{
-//       countryName
-//     }}>{children}</MedalistContext.Provider>
-//   );
-// };
-import React from 'react';
+  //       setCountries(prev => [...prev, data]);
+  //     };
 
-// import { Container } from './styles';
+  //     getData();
+  //   })
+  // }, [countriesNames])
 
-const context: React.FC = () => {
-  return <div />;
+  useEffect(() => {
+    if (!!valueCountry) {
+      const getData = async () => {
+        const data = await countryBoard(valueCountry);
+
+        setSelectedCountry(data);
+      };
+
+      getData();
+    }
+  }, [valueCountry]);
+
+  const getMedalist = async () => {
+    const medalist = await api.get("/medalists").then((res) => res.data);
+
+    medalist.map((list: MedalistProps) => {
+      setListAllCountries((prev) => [...prev, list.country]);
+    });
+  }
+
+  const handleValueCountry = (data: string) => {
+    if (!!data) {
+      setValueCountry(data);
+    }
+  };
+
+  return (
+    <MedalistDataContext.Provider
+      value={{
+        valueCountry,
+        countries,
+        selectedCountry,
+        countriesNames,
+        handleValueCountry,
+      }}
+    >
+      {children}
+    </MedalistDataContext.Provider>
+  );
+};
+
+export function CountryData() {
+  const context = useContext(MedalistDataContext);
+
+  return { context };
 }
-
-export default context;

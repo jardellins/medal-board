@@ -15,6 +15,36 @@
     height: 35vh;
 }
 
+.cards {
+    display: flex;
+    width: 100%;
+    margin-top: 10rem;
+    background: var(--light-green);
+    height: 30vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.card-info {
+    width: 25vw;
+}
+
+.card-info > p {
+    font-size: 2rem;
+    font-weight: bold;
+
+    text-align: center;
+    
+    color: var(--white);
+}
+
 .title {
     display: flex;
     flex-direction: column;

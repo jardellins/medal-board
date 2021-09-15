@@ -1,54 +1,17 @@
 import React, { useState, useEffect } from "react";
 
+import { CountryData } from "../../context/medalistsContext";
+
 import ImgPodium from "../../components/ImgPodium";
 import Header from "../../components/Header";
+import Table from "../../components/Table";
+import Podium from '../../assets/podium.png'
 
 import "./styles.css";
-import api from "../../services/api";
-import getCountries from "../../helpers/getCountries";
-import { CountryProps } from "../../dtos/country/countryDTO";
-import { MedalistProps } from "../../dtos/medalist/medalistDTO";
-import { countryBoard } from "../../helpers/countryBoard";
-import Table from "../../components/Table";
 
 const Home = () => {
-  const [listAllCountries, setListAllCountries] = useState<string[]>([]);
-  const [countries, setCountries] = useState<CountryProps[]>([]);
-  const [countriesNames, setCountriesNames] = useState<string[]>([]);
-  const [selectedCountry, setSelectedCountry] = useState<CountryProps>(
-    {} as CountryProps
-  );
-  const [valueCountry, setValueCountry] = useState<string>("");
-
-  useEffect(() => {
-    getMedalist();
-  }, []);
-
-  useEffect(() => {
-    const countriesNamesFiltered = getCountries(listAllCountries);
-
-    setCountriesNames(countriesNamesFiltered);
-  }, [listAllCountries]);
-
-  useEffect(() => {
-    if (!!valueCountry) {
-      const getData = async () => {
-        const data = await countryBoard(valueCountry);
-
-        setSelectedCountry(data);
-      };
-
-      getData();
-    }
-  }, [valueCountry]);
-
-  async function getMedalist() {
-    const medalist = await api.get("/medalists").then((res) => res.data);
-
-    medalist.map((list: MedalistProps) => {
-      setListAllCountries((prev) => [...prev, list.country]);
-    });
-  }
+  const { context } = CountryData();
+  const { countriesNames, selectedCountry, handleValueCountry } = context;
 
   return (
     <>
@@ -66,6 +29,18 @@ const Home = () => {
             </div>
           </div>
 
+          <div className="cards">
+            <div className="content-card">
+              <div className="card-info">
+                <p>See the medal count rank and find out who's in the first</p>
+                <button>See them</button>
+              </div>
+              <div className="content-image">
+                <img src={Podium} alt="Podium celebration" />
+              </div>
+            </div>
+          </div>
+
           <div className="list-countries">
             <div className="input">
               <label htmlFor="country">Choose your country</label>
@@ -74,7 +49,7 @@ const Home = () => {
                 type="text"
                 list="countries"
                 placeholder="Countries"
-                onChange={(e) => setValueCountry(e.target.value)}
+                onChange={(e) => handleValueCountry(e.target.value)}
               />
               <datalist id="countries">
                 {countriesNames &&

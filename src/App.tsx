@@ -1,11 +1,18 @@
-import React from 'react';
-import Home from './pages/Home';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
-import './assets/styles/global.css'
+import Routes from "./routes";
+import { MedalistProvider } from "./context/medalistsContext";
+
+import "./assets/styles/global.css";
 
 function App() {
   return (
-    <Home />   
+    <BrowserRouter>
+      <MedalistProvider>
+        <Routes />
+      </MedalistProvider>
+    </BrowserRouter>
   );
 }
 

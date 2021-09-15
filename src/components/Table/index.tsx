@@ -10,7 +10,6 @@ type TableProps = {
 };
 
 const Table = ({ country, showMedalist }: TableProps) => {
-  console.log(country.medalist);
   return (
     <>
       {Object.keys(country).length > 0 && (
