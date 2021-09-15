@@ -9,6 +9,7 @@ import getCountries from "../../helpers/getCountries";
 import { CountryProps } from "../../dtos/country/countryDTO";
 import { MedalistProps } from "../../dtos/medalist/medalistDTO";
 import { countryBoard } from "../../helpers/countryBoard";
+import Table from "../../components/Table";
 
 const Home = () => {
   const [listAllCountries, setListAllCountries] = useState<string[]>([]);
@@ -72,6 +73,7 @@ const Home = () => {
                 id="country"
                 type="text"
                 list="countries"
+                placeholder="Countries"
                 onChange={(e) => setValueCountry(e.target.value)}
               />
               <datalist id="countries">
@@ -81,30 +83,7 @@ const Home = () => {
                   ))}
               </datalist>
             </div>
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Country</th>
-                    <th>Gold</th>
-                    <th>Silver</th>
-                    <th>Bronze</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {selectedCountry && (
-                    <tr>
-                      <td>{selectedCountry.countryName}</td>
-                      <td>{selectedCountry.goldMedal}</td>
-                      <td>{selectedCountry.silverMedal}</td>
-                      <td>{selectedCountry.bronzeMedal}</td>
-                      <td>{selectedCountry.total}</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+            <Table country={selectedCountry} showMedalist />
           </div>
         </div>
       </main>
