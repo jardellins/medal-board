@@ -1,57 +1,66 @@
 .title-table {
-    font-size: 2rem;
-    font-weight: 300;
+  font-size: 2rem;
+  font-weight: 300;
 
-    margin-top: 3rem;
+  margin-top: 3rem;
 
-    color: var(--dark-blue);
+  color: var(--dark-blue);
+}
+
+.list {
+  width: 100%;
+  height: 90%;
+
+  margin: 3rem 0;
+
+  border: 1px solid var(--light-gray);
+  border-radius: 0.8rem;
 }
 
 .list table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .list table thead tr {
-    font-size: 2rem;
+  font-size: 2rem;
 
-    text-align: center;
-    text-transform: capitalize;
-    
-    
-    background: var(--light-green);
+  text-align: center;
+  text-transform: capitalize;
+
+  background: var(--light-green);
 }
 
 .list table thead tr th {
-    color: var(--white);
-    
-    padding: 1rem 0;
-    
-    width: 10%;
+  color: var(--white);
+
+  padding: 1rem 0;
+
+  width: 10%;
 }
 
 .list table thead tr th:first-child {
-    border-radius: 0.8rem 0 0 0;
+  border-radius: 0.8rem 0 0 0;
 }
 
 .list table thead tr th:last-child {
-    border-radius: 0 0.8rem 0 0;
+  border-radius: 0 0.8rem 0 0;
 }
 
 .list table tbody tr {
-    font-size: 1.7rem;
-    font-weight: 500;
+  font-size: 1.7rem;
+  font-weight: 500;
 
-    text-align: center;
+  text-align: center;
 
-    color: var(--dark-blue);
+  color: var(--dark-blue);
 }
 
-.list table tbody tr td{
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--light-gray);
+.list table tbody tr td {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--light-gray);
 }
 
-.list table tbody tr:last-child td{
-    border-bottom: none;
+.list table tbody tr:last-child td {
+  border-bottom: none;
 }

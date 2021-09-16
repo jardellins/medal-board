@@ -22,13 +22,18 @@
     color: var(--gray-blue);
 }
 
-.won-table {
+.content-board {
     padding: 2rem;
-    margin-bottom: 5rem;
 
     border-radius: 0.8rem;
     
+    margin-bottom: 5rem;
+
     background: var(--white);
+}
+
+.won-table {
+    border-radius: 0.8rem;
 }
 
 .active-loading {
@@ -37,6 +42,6 @@
 }
 
 #loading {
-    width: 40vw;
+    width: 40rem;
     padding: 18rem;
 }

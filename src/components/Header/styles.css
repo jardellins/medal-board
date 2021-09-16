@@ -1,50 +1,49 @@
 header {
-    position: absolute;
+  position: absolute;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    height: 8vh;
-    
-    top: 0;
-    left: 0;
-    right: 0;
+  height: 8vh;
 
-    background: var(--light-green);
+  top: 0;
+  left: 0;
+  right: 0;
 
+  background: var(--light-green);
 }
 
 .container-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    width: 100%;
-    max-width: 980px;
+  width: 100%;
+  max-width: 980px;
 
-    margin: auto;
+  margin: auto;
 }
 
 .icon {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--white);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--white);
 }
 
 .nav-list > ul {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    font-size: 1.6rem;
-    font-weight: 400;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .nav-list > ul > li {
-    padding: 0 1rem;
+  padding: 0 1rem;
 
-    text-decoration: none;
-    list-style: none;
-    
-    color: var(--white);
+  text-decoration: none;
+  list-style: none;
+
+  color: var(--white);
 }

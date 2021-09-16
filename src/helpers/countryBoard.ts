@@ -2,6 +2,7 @@ import React from "react";
 
 import api from "../services/api";
 
+import { MEDALS } from "../config/medalsTypes/medals";
 import { CountryProps } from "../dtos/country/countryDTO";
 import { MedalistProps } from "../dtos/medalist/medalistDTO";
 
@@ -15,13 +16,13 @@ async function countryBoard(country: string) {
 
   data.map((data: MedalistProps) => {
     switch (data.medal) {
-      case "Gold":
+      case MEDALS.GOLD:
         gold += 1;
         return;
-      case "Silver":
+      case MEDALS.SILVER:
         silver += 1;
         return;
-      case "Bronze":
+      case MEDALS.BRONZE:
         bronze += 1;
     }
   });

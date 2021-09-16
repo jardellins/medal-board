@@ -4,7 +4,7 @@ import { CardProps } from "../../dtos/card/cardsDTO";
 
 import "./styles.css";
 
-const Card = ({title, info, image, link}: CardProps) => {
+const Card = ({ title, info, image, link }: CardProps) => {
   return (
     <div className="display-image">
       <div className="card-info">

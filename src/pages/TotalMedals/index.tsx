@@ -13,9 +13,7 @@ import "./styles.css";
 
 const TotalMedals = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [sortCountriesTotal, setSortCountriesTotal] = useState<CountryProps[]>(
-    []
-  );
+  const [sortCountriesTotal, setSortCountriesTotal] = useState<CountryProps[]>([]);
 
   const { context } = CountryData();
   const { countriesNames, handleAddCountries, countries } = context;
@@ -57,12 +55,14 @@ const TotalMedals = () => {
         </p>
       </div>
 
-      <div className={loading ? "won-table active-loading" : "won-table"}>
-        {loading ? (
-          <img id="loading" src={loadingGif} alt="Loading" />
-        ) : (
-          <Table country={sortCountriesTotal} />
-        )}
+      <div className="content-board">
+        <div className={loading ? "won-table active-loading" : "won-table"}>
+          {loading ? (
+            <img id="loading" src={loadingGif} alt="Loading" />
+          ) : (
+            <Table country={sortCountriesTotal} />
+          )}
+        </div>
       </div>
     </>
   );

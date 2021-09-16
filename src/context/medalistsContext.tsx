@@ -1,21 +1,24 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
+import api from "../services/api";
+
 import { CountryProps } from "../dtos/country/countryDTO";
 import { ChildrenProps } from "../dtos/medalist/childrenDTO";
 import { MedalistProps } from "../dtos/medalist/medalistDTO";
+
 import { countryBoard } from "../helpers/countryBoard";
-import getCountries from "../helpers/getCountries";
-import api from "../services/api";
+import sortCountries from "../helpers/sortCountries";
+
+import { LENGTH_SEARCH } from "../config/searchLength/length";
 
 import MedalistDataContext from "./context";
 
 export const MedalistProvider = ({ children }: ChildrenProps) => {
+  const [listAllAthletes, setListAthletes] = useState<MedalistProps[]>([]);
   const [listAllCountries, setListAllCountries] = useState<string[]>([]);
   const [countries, setCountries] = useState<CountryProps[]>([]);
   const [countriesNames, setCountriesNames] = useState<string[]>([]);
-  const [selectedCountry, setSelectedCountry] = useState<CountryProps>(
-    {} as CountryProps
-  );
+  const [selectedCountry, setSelectedCountry] = useState<CountryProps[]>([]);
   const [valueCountry, setValueCountry] = useState<string>("");
 
   useEffect(() => {
@@ -23,20 +26,23 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
   }, []);
 
   useEffect(() => {
-    const countriesNamesFiltered = getCountries(listAllCountries);
+    const countriesNamesFiltered = sortCountries(listAllCountries);
 
     setCountriesNames(countriesNamesFiltered);
   }, [listAllCountries]);
 
   useEffect(() => {
-    if (!!valueCountry) {
+    if (valueCountry.length === LENGTH_SEARCH.WORD_LENGTH) {
       const getData = async () => {
-        const data = await countryBoard(valueCountry);
+        let data: CountryProps[] = [];
+        data[0] = await countryBoard(valueCountry);
 
         setSelectedCountry(data);
       };
 
       getData();
+    } else {
+      setSelectedCountry([]);
     }
   }, [valueCountry]);
 
@@ -46,7 +52,8 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
     medalist.map((list: MedalistProps) => {
       setListAllCountries((prev) => [...prev, list.country]);
     });
-  }
+    setListAthletes(medalist);
+  };
 
   const handleValueCountry = (data: string) => {
     if (!!data) {
@@ -55,8 +62,8 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
   };
 
   const handleAddCountries = (data: CountryProps) => {
-    setCountries(prev => [...prev, data])
-  }
+    setCountries((prev) => [...prev, data]);
+  };
 
   return (
     <MedalistDataContext.Provider
@@ -65,6 +72,7 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
         countries,
         selectedCountry,
         countriesNames,
+        listAllAthletes,
         handleValueCountry,
         handleAddCountries,
       }}

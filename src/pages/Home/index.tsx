@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
-
-import { CountryData } from "../../context/medalistsContext";
+import React, { useState } from "react";
+import ClearIcon from "@material-ui/icons/Clear";
 
 import ImgPodium from "../../components/ImgPodium";
 import Header from "../../components/Header";
-import Table from "../../components/Table";
+import Line from "../../components/Line";
+import Card from "../../components/Card";
 
 import podium from "../../assets/images/podium.png";
 import olympic from "../../assets/images/olympic.png";
 
+import { CountryData } from "../../context/medalistsContext";
+
 import "./styles.css";
-import Line from "../../components/Line";
-import Card from "../../components/Card";
-import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   const { context } = CountryData();
-  const { countriesNames, selectedCountry, handleValueCountry } = context;
+  const { listAllAthletes } = context;
 
   return (
     <>
@@ -24,7 +25,6 @@ const Home = () => {
 
       <main>
         <div className="container">
-
           <div className="card-image">
             <div className="title">
               <h1>Here we'll show you the medal board</h1>
@@ -35,31 +35,10 @@ const Home = () => {
             </div>
           </div>
 
-          {/* <div className="list-countries">
-            <div className="input">
-              <label htmlFor="country">Choose your country</label>
-              <input
-                id="country"
-                type="text"
-                list="countries"
-                placeholder="Countries"
-                onChange={(e) => handleValueCountry(e.target.value)}
-              />
-              <datalist id="countries">
-                {countriesNames &&
-                  countriesNames.map((country, index) => (
-                    <option key={index} value={country} />
-                  ))}
-              </datalist>
-            </div>
-            <Table country={selectedCountry} showMedalist />
-          </div> */}
-          
           <div className="cards">
             <div className="card-title">
               <h2>Top medals</h2>
               <div className="content-card">
-                
                 <Card
                   title="Total medals"
                   info="See the medal count rank and find out who's in the first"
@@ -68,12 +47,12 @@ const Home = () => {
                 />
 
                 <Line />
-                
+
                 <Card
                   title="List of countries"
                   info="The list of countries that participated"
                   image={olympic}
-                  link="/"
+                  link="/countries"
                 />
 
                 <Line />
@@ -83,11 +62,43 @@ const Home = () => {
 
           <div className="card-athletes">
             <h3>Athletes participate</h3>
-            <p><Link to="/">Click here</Link> to see all athletes that won a medal in this games.</p>
+            <p>
+              <span className="click" onClick={() => setShowModal(true)}>
+                Click here
+              </span>{" "}
+              to see all athletes that won a medal in this games.
+            </p>
           </div>
-
         </div>
       </main>
+
+      {showModal && (
+        <div className="modal-container">
+          <div className="close-icon click" onClick={() => setShowModal(false)}>
+            <ClearIcon
+              style={{
+                fontSize: 50,
+                fontWeight: "bold",
+                color: "var(--white)",
+              }}
+            />
+          </div>
+          <div className="modal-content">
+            <h2>Athletes</h2>
+            <div className="modal-card">
+              {listAllAthletes &&
+                listAllAthletes.map((athlete) => {
+                  return (
+                    <div>
+                      <span>{athlete.athlete}</span>
+                      <span>{athlete.country}</span>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

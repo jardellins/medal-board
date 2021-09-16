@@ -1,6 +1,6 @@
 import React from "react";
 
-const getCountries = (list: string[]) => {
+const sortCountries = (list: string[]) => {
   const data = list.filter((elem, index) => {
     return index === list.indexOf(elem);
   });
@@ -8,4 +8,4 @@ const getCountries = (list: string[]) => {
   return data.sort();
 };
 
-export default getCountries;
+export default sortCountries;

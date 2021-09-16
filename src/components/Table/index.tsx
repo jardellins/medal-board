@@ -67,8 +67,8 @@ const Table = ({ country, showMedalist }: TableProps) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {country.map((country, index) => {
-                      country.medalist.map((medalist, index) => {
+                    {country.map((country) => {
+                      return country.medalist.map((medalist, index) => {
                         return (
                           <tr key={index}>
                             <td>{medalist.athlete}</td>
