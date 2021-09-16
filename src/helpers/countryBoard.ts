@@ -1,15 +1,13 @@
 import React from "react";
 
-import api from "../services/api";
-
 import { MEDALS } from "../config/medalsTypes/medals";
 import { CountryProps } from "../dtos/country/countryDTO";
 import { MedalistProps } from "../dtos/medalist/medalistDTO";
+import countryRequest from "../hooks/getCountries";
 
 async function countryBoard(country: string) {
-  const data = await api
-    .get(`/medalists?country=${country}`)
-    .then((res) => res.data);
+  const data = await countryRequest.getCountry(country);
+
   let gold = 0;
   let silver = 0;
   let bronze = 0;

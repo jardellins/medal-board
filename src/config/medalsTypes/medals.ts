@@ -1,5 +1,5 @@
 export const MEDALS = {
-  GOLD: "gold",
-  SILVER: "silver",
-  BRONZE: "bronzer",
+  GOLD: "Gold",
+  SILVER: "Silver",
+  BRONZE: "Bronze",
 };

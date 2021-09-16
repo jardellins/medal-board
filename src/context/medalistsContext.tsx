@@ -12,6 +12,7 @@ import sortCountries from "../helpers/sortCountries";
 import { LENGTH_SEARCH } from "../config/searchLength/length";
 
 import MedalistDataContext from "./context";
+import medalistRequest from "../hooks/getMedalists";
 
 export const MedalistProvider = ({ children }: ChildrenProps) => {
   const [listAllAthletes, setListAthletes] = useState<MedalistProps[]>([]);
@@ -47,7 +48,7 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
   }, [valueCountry]);
 
   const getMedalist = async () => {
-    const medalist = await api.get("/medalists").then((res) => res.data);
+    const medalist = await medalistRequest.getAll();
 
     medalist.map((list: MedalistProps) => {
       setListAllCountries((prev) => [...prev, list.country]);
