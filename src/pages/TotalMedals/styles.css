@@ -1,0 +1,42 @@
+.board-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 10rem;
+    
+    margin-top: 10rem;
+}
+
+.board-title > h1 {
+    font-size: 3rem;
+    
+    padding-bottom: 1rem;
+
+    color: var(--dark-blue);
+}
+
+.board-title > p {
+    font-size: 1.5rem;
+    color: var(--gray-blue);
+}
+
+.won-table {
+    padding: 2rem;
+    margin-bottom: 5rem;
+
+    border-radius: 0.8rem;
+    
+    background: var(--white);
+}
+
+.active-loading {
+    display: flex;
+    justify-content: center;
+}
+
+#loading {
+    width: 40vw;
+    padding: 18rem;
+}

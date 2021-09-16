@@ -8,6 +8,7 @@ type CountryMedalistsProps = {
     valueCountry: string;
     countriesNames: string[];
     handleValueCountry: (e: string) => void;
+    handleAddCountries: (e: CountryProps) => void;
 }
 
 const MedalistDataContext = createContext<CountryMedalistsProps>({} as CountryMedalistsProps);

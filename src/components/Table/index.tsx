@@ -1,11 +1,12 @@
 import React from "react";
 import { CountryProps } from "../../dtos/country/countryDTO";
+import { MedalistProps } from "../../dtos/medalist/medalistDTO";
 import Line from "../Line";
 
 import "./styles.css";
 
 type TableProps = {
-  country: CountryProps;
+  country: CountryProps[];
   showMedalist?: boolean;
 };
 
@@ -14,9 +15,13 @@ const Table = ({ country, showMedalist }: TableProps) => {
     <>
       {Object.keys(country).length > 0 && (
         <>
-          <span className="title-table">Medal board</span>
+          {showMedalist && (
+            <>
+              <span className="title-table">Medal board</span>
 
-          <Line />
+              <Line />
+            </>
+          )}
 
           <div className="list">
             <table>
@@ -30,13 +35,17 @@ const Table = ({ country, showMedalist }: TableProps) => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{country.countryName}</td>
-                  <td>{country.goldMedal}</td>
-                  <td>{country.silverMedal}</td>
-                  <td>{country.bronzeMedal}</td>
-                  <td>{country.total}</td>
-                </tr>
+                {country.map((country, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{country.countryName}</td>
+                      <td>{country.goldMedal}</td>
+                      <td>{country.silverMedal}</td>
+                      <td>{country.bronzeMedal}</td>
+                      <td>{country.total}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -58,15 +67,17 @@ const Table = ({ country, showMedalist }: TableProps) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {country.medalist.map((medalist, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{medalist.athlete}</td>
-                          <td>{medalist.event}</td>
-                          <td>{medalist.medal}</td>
-                          <td>{medalist.sex}</td>
-                        </tr>
-                      );
+                    {country.map((country, index) => {
+                      country.medalist.map((medalist, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{medalist.athlete}</td>
+                            <td>{medalist.event}</td>
+                            <td>{medalist.medal}</td>
+                            <td>{medalist.sex}</td>
+                          </tr>
+                        );
+                      });
                     })}
                   </tbody>
                 </table>

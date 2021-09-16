@@ -28,22 +28,6 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
     setCountriesNames(countriesNamesFiltered);
   }, [listAllCountries]);
 
-  // useEffect(() => {
-  //   if(!countriesNames) {
-  //     return
-  //   }
-
-  //   countriesNames.map((country) => {
-  //     const getData = async () => {
-  //       const data = await countryBoard(country);
-
-  //       setCountries(prev => [...prev, data]);
-  //     };
-
-  //     getData();
-  //   })
-  // }, [countriesNames])
-
   useEffect(() => {
     if (!!valueCountry) {
       const getData = async () => {
@@ -70,6 +54,10 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
     }
   };
 
+  const handleAddCountries = (data: CountryProps) => {
+    setCountries(prev => [...prev, data])
+  }
+
   return (
     <MedalistDataContext.Provider
       value={{
@@ -78,6 +66,7 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
         selectedCountry,
         countriesNames,
         handleValueCountry,
+        handleAddCountries,
       }}
     >
       {children}

@@ -12,9 +12,37 @@
     align-items: center;
     justify-content: center;
 
-    height: 35vh;
+    height: 40vh;
 
     border-bottom: 1px solid var(--light-green);
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 50%;
+
+    color: var(--dark-blue);
+}
+
+.title > h1 {
+    margin: auto;
+
+    text-align: center;
+    font-size: 5em;
+}
+
+.title > p {
+    font-weight: 300;
+    font-size: 1.8rem; 
+}
+
+.card-medals {
+    width: 50%;
+    height: 100%;
 }
 
 .cards {
@@ -23,7 +51,7 @@
     width: 100%;
     height: 60vh;
 
-    margin-top: 10rem;
+    margin: 5rem 0;
     
     border-radius: 1.8rem;
     background: var(--white);
@@ -43,48 +71,17 @@
 
     text-align: center;
 
-    color: var(--gray-blue);
+    color: var(--dark-blue);
 }
 
 .content-card {
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
 
     width: 100%;
-    height: 18vh;
     
-    justify-content: space-evenly;
-}
-
-.title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width: 50%;
-
-    font-size: 2.5rem;
-
-    color: var(--dark-blue);
-}
-
-.title > h1 {
-    margin: auto;
-
-    text-align: center;
-    font-size: 2em;
-}
-
-.title > p {
-    font-weight: 300;
-    font-size: 1.5rem; 
-}
-
-.card-medals {
-    width: 50%;
-    height: 100%;
 }
 
 .list-countries {
@@ -159,4 +156,31 @@
     
     color: var(--light-green);
     background: none;
+}
+
+.card-athletes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 20rem;
+
+    margin-bottom: 5rem;
+    
+    background: var(--light-green);
+}
+
+.card-athletes > h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin: 2rem;
+}
+
+.card-athletes > p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--white);
 }
