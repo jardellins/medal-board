@@ -5,9 +5,11 @@ import { CountryData } from "../../context/medalistsContext";
 import ImgPodium from "../../components/ImgPodium";
 import Header from "../../components/Header";
 import Table from "../../components/Table";
-import Podium from '../../assets/podium.png'
+import Podium from "../../assets/images/podium.png";
 
 import "./styles.css";
+import Line from "../../components/Line";
+import Card from "../../components/Card";
 
 const Home = () => {
   const { context } = CountryData();
@@ -30,13 +32,17 @@ const Home = () => {
           </div>
 
           <div className="cards">
-            <div className="content-card">
-              <div className="card-info">
-                <p>See the medal count rank and find out who's in the first</p>
-                <button>See them</button>
-              </div>
-              <div className="content-image">
-                <img src={Podium} alt="Podium celebration" />
+            <div className="card-title">
+              <h2>Top medals</h2>
+              <div className="content-card">
+                
+                <Card
+                  title="Total medals"
+                  info="See the medal count rank and find out who's in the first"
+                  image={Podium}
+                />
+
+                <Line />
               </div>
             </div>
           </div>

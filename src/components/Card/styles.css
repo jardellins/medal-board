@@ -1,0 +1,36 @@
+.display-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.card-info {
+  width: 18vw;
+}
+
+.card-info > h3 {
+  font-size: 2rem;
+  font-weight: 400;
+
+  margin-bottom: 2rem;
+
+  color: var(--gray-blue);
+}
+
+.card-info > p {
+  font-size: 1.2rem;
+  font-weight: 300;
+
+  text-align: justify;
+
+  width: 42%;
+  margin-bottom: 1rem;
+
+  color: var(--gray-blue);
+}
+
+.content-image > img {
+  width: 15rem;
+}
