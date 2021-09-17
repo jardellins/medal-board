@@ -1,5 +1,5 @@
 .line {
-  width: 70%;
-  margin: 2rem;
+  width: 100%;
+  margin: 2rem 0;
   border-bottom: 1px solid var(--light-gray);
 }

@@ -80,7 +80,11 @@
   align-items: center;
   flex-direction: column;
 
-  width: 100%;
+  width: 70%;
+  padding: 0 5rem;
+
+  border: 1px solid var(--light-green);
+  border-radius: 0.8rem;
 }
 
 .button-outline {
@@ -148,6 +152,7 @@
 
 .click {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .modal-content {

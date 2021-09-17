@@ -54,8 +54,6 @@ const Home = () => {
                   image={olympic}
                   link="/countries"
                 />
-
-                <Line />
               </div>
             </div>
           </div>

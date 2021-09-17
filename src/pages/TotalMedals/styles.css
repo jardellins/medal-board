@@ -19,6 +19,7 @@
 
 .board-title > p {
     font-size: 1.5rem;
+    text-align: center;
     color: var(--gray-blue);
 }
 

@@ -53,7 +53,7 @@ const Table = ({ country, showMedalist }: TableProps) => {
           {showMedalist && (
             <>
               <span className="title-table">
-                Here is the list of all Olympics medalists
+                Olympics medalists
               </span>
               <Line />
               <div className="list">
