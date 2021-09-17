@@ -102,7 +102,7 @@ Going to directory of the project
 
 ```sh
 
-cd in-time
+cd medal-board
 
 ```
 
