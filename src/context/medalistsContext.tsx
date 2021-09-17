@@ -1,6 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-
-import api from "../services/api";
+import React, { useState, useEffect, useContext } from "react";
 
 import { CountryProps } from "../dtos/country/countryDTO";
 import { ChildrenProps } from "../dtos/medalist/childrenDTO";

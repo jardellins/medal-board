@@ -1,6 +1,7 @@
 import React from "react";
 import { ERRORS } from "../config/errors/errorsApi";
 import { MedalistProps } from "../dtos/medalist/medalistDTO";
+
 import api from "../services/api";
 
 const medalistRequest = {
