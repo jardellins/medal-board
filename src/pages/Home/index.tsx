@@ -73,13 +73,7 @@ const Home = () => {
       {showModal && (
         <div className="modal-container">
           <div className="close-icon click" onClick={() => setShowModal(false)}>
-            <ClearIcon
-              style={{
-                fontSize: 50,
-                fontWeight: "bold",
-                color: "var(--white)",
-              }}
-            />
+            <ClearIcon className="close-icon" />
           </div>
           <div className="modal-content">
             <h2>Athletes</h2>

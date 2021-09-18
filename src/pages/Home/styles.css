@@ -206,3 +206,11 @@
   border-radius: 1rem;
   background-color: var(--light-green);
 }
+
+.close-icon > svg {
+  font-size: 5rem;
+
+  padding-top: 1rem;
+
+  color: var(--white);
+}

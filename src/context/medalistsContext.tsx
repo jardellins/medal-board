@@ -48,6 +48,10 @@ export const MedalistProvider = ({ children }: ChildrenProps) => {
   const getMedalist = async () => {
     const medalist = await medalistRequest.getAll();
 
+    if(!medalist) {
+      return
+    }
+
     medalist.map((list: MedalistProps) => {
       setListAllCountries((prev) => [...prev, list.country]);
     });
